@@ -55,6 +55,3 @@ jobs:
         run: pip install -r requirements.txt
       - name: Update dataset na instância CKAN
         run: dpckan --datastore --ckan-host "$CKAN_HOST" --ckan-key "$CKAN_KEY" dataset update
-        with:
-          CKAN_HOST: ${{ secrets.CKAN_HOST }}
-          CKAN_KEY: ${{ secrets.CKAN_KEY }}
