@@ -17,6 +17,8 @@ As configurações abaixo deverão ser criadas no repositório que irá chamar e
   - CKAN_HOST
   - CKAN_KEY_<USUARIO_GITHUB>
 
+Necessário configurar autorização para escrita em commits via actions em `path_to_repo/settings/actions` "Workflow permissions" "Read and write permission" e "Allow Github Actions create and aprove pull requests".
+
 Crie o arquivo `.github/workflow/publicacao_atualizacao_dataset_template.yml` com o conteúdo a seguir:
 
 ```
