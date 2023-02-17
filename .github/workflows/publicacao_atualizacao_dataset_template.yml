@@ -54,5 +54,4 @@ jobs:
       - name: Instalação de dependências
         run: pip install -r requirements.txt
       - name: Update dataset na instância CKAN
-        run: |
-          dpckan --datastore --ckan-host ${{ secrets.CKAN_HOST }} --ckan-key ${{ secrets.CKAN_KEY }} dataset update
+        run: dpckan --datastore --ckan-host ${{ secrets.CKAN_HOST }} --ckan-key ${{ secrets.CKAN_KEY }} dataset update
