@@ -53,12 +53,8 @@ jobs:
           ref: main
       - name: Instalação de dependências
         run: pip install -r requirements.txt
-      - id: string
-        uses: ASzc/change-string-case-action@v1
-        with:
-          string: ${{ github.actor }}
       - name: Update dataset na instância CKAN
-        env:
+        with:
           CKAN_HOST: ${{ secrets.CKAN_HOST }}
           CKAN_KEY: ${{ secrets.CKAN_KEY }}
         run: dpckan --datastore --ckan-host "$CKAN_HOST" --ckan-key "$CKAN_KEY" dataset update
