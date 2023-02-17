@@ -38,14 +38,22 @@ on:
       - 'upload/*'
 
 jobs:
-  do-it:
+  build-ckan-key:
+    name: Constroi CKAN_KEY com nome usuário GitHub 
+    runs-on: ubuntu-latest
     steps:
-      - id: string
-        uses: ASzc/change-string-case-action@v1
-        with:
-          string: ${{ github.actor }}
-      uses: transparencia-mg/reusable-workflows/.github/workflows/publicacao_atualizacao_dataset_template.yml@main
-      secrets:
-        CKAN_HOST: ${{ secrets.CKAN_HOST }}
+    - name: Busca nome usuário GitHub
+      id: string
+      uses: ASzc/change-string-case-action@v1
+      with:
+        string: ${{ github.actor }}
+    outputs:
         CKAN_KEY: ${{ secrets[format('CKAN_KEY_{0}', steps.string.outputs.uppercase)] }}
+  reusable-workflow:
+    name: Reusable workflow
+    uses: transparencia-mg/reusable-workflows/.github/workflows/publicacao_atualizacao_dataset_template.yml@main
+    needs: build-ckan-key
+    secrets:
+      CKAN_HOST: ${{ secrets.CKAN_HOST }}
+      CKAN_KEY: ${{ needs.build-ckan-key.outputs.CKAN_KEY }}
 ```
