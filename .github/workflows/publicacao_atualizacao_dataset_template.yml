@@ -15,10 +15,10 @@ jobs:
     name: Construindo datapackage
     runs-on: ubuntu-latest
     steps:
-      - name: Instalação de dependências
-        run: pip install -r requirements.txt
       - name: Checkout repositório
         uses: actions/checkout@v2
+      - name: Instalação de dependências
+        run: pip install -r requirements.txt
       - name: Limpa arquivos
         run: make clean
       - name: Converte arquivos excel para csv
