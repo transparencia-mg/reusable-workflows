@@ -11,40 +11,40 @@ on:
         required: true
 
 jobs:
-  build:
-    name: Construindo datapackage
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repositório
-        uses: actions/checkout@v2
-      - name: Instalação de dependências
-        run: pip install -r requirements.txt
-      - name: Limpa arquivos
-        run: make clean
-      - name: Converte arquivos excel para csv
-        run: make data
-      - name: Constroi datapackage.json
-        run: make build
-      - name: Commit novo datapackage.json
-        uses: stefanzweifel/git-auto-commit-action@v4
-      - name: Compara recursos datapackage.json com pasta data
-        run: make compare
-  validate:
-    name: Validando dataset
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          ref: main
-      - name: Validate data
-        uses: frictionlessdata/repository@v1
+  # build:
+  #   name: Construindo datapackage
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repositório
+  #       uses: actions/checkout@v2
+  #     - name: Instalação de dependências
+  #       run: pip install -r requirements.txt
+  #     - name: Limpa arquivos
+  #       run: make clean
+  #     - name: Converte arquivos excel para csv
+  #       run: make data
+  #     - name: Constroi datapackage.json
+  #       run: make build
+  #     - name: Commit novo datapackage.json
+  #       uses: stefanzweifel/git-auto-commit-action@v4
+  #     - name: Compara recursos datapackage.json com pasta data
+  #       run: make compare
+  # validate:
+  #   name: Validando dataset
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0
+  #         ref: main
+  #     - name: Validate data
+  #       uses: frictionlessdata/repository@v1
   ckan:
     name: Publica / Atualiza CKAN
     runs-on: ubuntu-latest
-    needs: validate
+    # needs: validate
     steps:
       - name: Checkout repositório
         uses: actions/checkout@v2
